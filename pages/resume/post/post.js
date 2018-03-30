@@ -9,7 +9,7 @@ Page({
   data: {
     // formData start
     // formData end
-    validators: {},
+    validators: {name:1},
     options: {
       registerType: [
         { name: '部队退伍兵', id: 1, checked: false },
