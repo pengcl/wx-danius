@@ -1,0 +1,5 @@
+/* pages/resume/post/post.wxss */
+
+page {
+  background: #f8f8f8;
+}

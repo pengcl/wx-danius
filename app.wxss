@@ -1,0 +1,8 @@
+@import "weui.wxss";
+@import "reset.wxss";
+
+/**app.wxss**/
+
+page,.container {
+  min-height: 100%;
+}

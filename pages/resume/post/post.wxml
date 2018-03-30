@@ -1,0 +1,153 @@
+<!--pages/resume/post/post.wxml-->
+<form bindsubmit="formSubmit">
+
+  <!-- 应聘类型 开始 -->
+  <view class="weui-cells__title">应聘类型</view>
+  <view class="weui-cells weui-cells_after-title">
+    <radio-group name="registerType" bindchange="radioChange">
+      <label wx:for="{{options.registerType}}" wx:key="item" class="weui-cell weui-check__label">
+        <radio class="weui-check" value="{{item.value}}" />
+
+        <view class="weui-cell__bd">{{item.name}}</view>
+        <view wx:if="{{item.value === registerType}}" class="weui-cell__ft weui-cell__ft_in-radio">
+          <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
+        </view>
+      </label>
+    </radio-group>
+  </view>
+  <!-- 应聘类型 结束 -->
+
+  <!-- 基本信息 开始 -->
+  <view class="weui-cells__title">基本信息</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">姓名</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input name="name" class="weui-input" placeholder="请输入姓名" />
+      </view>
+    </view>
+
+    <picker id="sex" class="weui-cell weui-cell_access" bindchange="bindPickerChange" range="{{options.sex}}" range-key="name">
+      <view class="weui-cell__bd">性别</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </picker>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">手机号码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input name="mobile" class="weui-input" type="number" placeholder="请输入您的常用手机号码" />
+      </view>
+    </view>
+
+    <picker mode="date" fields="month" value="{{date}}" start="1980-09" end="2018-01" bindchange="bindPickerChange" id="birthday" class="weui-cell weui-cell_access">
+      <view class="weui-cell__bd">出生年月</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </picker>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">身高</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input name="height" class="weui-input" type="number" placeholder="填写身高(厘米)" />
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">体重</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input name="weight" class="weui-input" type="number" placeholder="填写体重(公斤)" />
+      </view>
+    </view>
+
+    <picker id="politicalClimate" class="weui-cell weui-cell_access" bindchange="bindPickerChange" range="{{options.politicalClimate}}" range-key="name">
+      <view class="weui-cell__bd">政治面貌</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </picker>
+
+    <picker id="education" class="weui-cell weui-cell_access" bindchange="bindPickerChange" range="{{options.education}}" range-key="name">
+      <view class="weui-cell__bd">学历</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </picker>
+
+    <picker mode="region" bindchange="bindPickerChange" id="address" class="weui-cell weui-cell_access">
+      <view class="weui-cell__bd">现居住地</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </picker>
+
+    <picker id="serverCity" class="weui-cell weui-cell_access" bindchange="bindPickerChange" range="{{options.serverCity}}" range-key="name">
+      <view class="weui-cell__bd">意向城市</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </picker>
+  </view>
+  <!-- 基本信息 结束 -->
+
+  <!-- 学历信息 开始 -->
+  <view wx:if="{{registerType == 0}}" class="weui-cells__title">学历信息</view>
+  <view wx:if="{{registerType == 0}}" class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">毕业院校</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input name="graduationPlace" class="weui-input" placeholder="请填写毕业院校名称" />
+      </view>
+    </view>
+
+    <picker mode="date" fields="month" value="{{date}}" start="1980-09" end="2018-01" bindchange="bindPickerChange" id="graduationTime" class="weui-cell weui-cell_access">
+      <view class="weui-cell__bd">毕业时间</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </picker>
+
+    <picker id="movementType" class="weui-cell weui-cell_access" bindchange="bindPickerChange" range="{{options.movementType}}" range-key="name">
+      <view class="weui-cell__bd">专业类型</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </picker>
+  </view>
+  <!-- 学历信息 结束 -->
+
+  <!-- 部队信息 开始 -->
+  <view class="weui-cells__title">部队信息</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">原服役部队</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input name="armyServePlace" class="weui-input" placeholder="请填写原部队单位名称" />
+      </view>
+    </view>
+
+    <picker mode="date" fields="month" value="{{date}}" start="1980-09" end="2018-01" bindchange="bindPickerChange" id="enlistmentTime" class="weui-cell weui-cell_access">
+      <view class="weui-cell__bd">入伍时间</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </picker>
+
+    <picker mode="date" fields="month" value="{{date}}" start="1980-09" end="2018-01" bindchange="bindPickerChange" id="retirementTime" class="weui-cell weui-cell_access">
+      <view class="weui-cell__bd">退伍时间</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </picker>
+
+    <picker id="armyType" class="weui-cell weui-cell_access" bindchange="bindServicesPickerChange" range="{{options.armyType}}" range-key="name">
+      <view class="weui-cell__bd">军种</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </picker>
+
+    <picker id="services" class="weui-cell weui-cell_access" bindchange="bindPickerChange" range="{{options.services}}" range-key="name">
+      <view class="weui-cell__bd">兵种</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </picker>
+  </view>
+  <!-- 部队信息 结束 -->
+
+  <view class="weui-btn-area">
+    <button class="weui-btn weui-btn_primary" formType="submit">Submit</button>
+  </view>
+
+</form>
