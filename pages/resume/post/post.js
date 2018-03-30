@@ -1,158 +1,6 @@
 // pages/resume/post/post.js
-const services = [
-  [
-    {
-      text: '步兵',
-      value: '步兵'
-    },
-    {
-      text: '侦察兵',
-      value: '侦察兵'
-    },
-    {
-      text: '装甲兵',
-      value: '装甲兵'
-    },
-    {
-      text: '炮兵',
-      value: '炮兵'
-    },
-    {
-      text: '防空兵',
-      value: '防空兵'
-    },
-    {
-      text: '陆军航空兵',
-      value: '陆军航空兵'
-    },
-    {
-      text: '工程兵',
-      value: '工程兵'
-    },
-    {
-      text: '通信兵',
-      value: '通信兵'
-    },
-    {
-      text: '防化兵',
-      value: '防化兵'
-    },
-    {
-      text: '电子对抗兵',
-      value: '电子对抗兵'
-    },
-    {
-      text: '特种兵',
-      value: '特种兵'
-    }
-  ],
-  [
-    {
-      text: '水面舰艇部队',
-      value: '水面舰艇部队'
-    },
-    {
-      text: '潜艇部队',
-      value: '潜艇部队'
-    },
-    {
-      text: '海军航空兵',
-      value: '海军航空兵'
-    },
-    {
-      text: '海军岸防部队',
-      value: '海军岸防部队'
-    },
-    {
-      text: '海军陆战队',
-      value: '海军陆战队'
-    }
-  ],
-  [
-    {
-      text: '空军航空兵',
-      value: '空军航空兵'
-    },
-    {
-      text: '地空导弹兵',
-      value: '地空导弹兵'
-    },
-    {
-      text: '高射炮兵',
-      value: '高射炮兵'
-    },
-    {
-      text: '雷达兵',
-      value: '雷达兵'
-    },
-    {
-      text: '电子对抗兵',
-      value: '电子对抗兵'
-    },
-    {
-      text: '空降兵',
-      value: '空降兵'
-    }
-  ],
-  [
-    {
-      text: '导弹兵',
-      value: '导弹兵'
-    },
-    {
-      text: '其它保障部队',
-      value: '其它保障部队'
-    }
-  ],
-  [
-    {
-      text: '网络部队',
-      value: '网络部队'
-    },
-    {
-      text: '航天部队',
-      value: '航天部队'
-    },
-    {
-      text: '保障部队',
-      value: '保障部队'
-    }
-  ],
-  [
-    {
-      text: '内卫部队',
-      value: '内卫部队'
-    },
-    {
-      text: '警卫部队',
-      value: '警卫部队'
-    },
-    {
-      text: '边防部队',
-      value: '边防部队'
-    },
-    {
-      text: '消防部队',
-      value: '消防部队'
-    },
-    {
-      text: '黄金部队',
-      value: '黄金部队'
-    },
-    {
-      text: '水电部队',
-      value: '水电部队'
-    },
-    {
-      text: '交通部队',
-      value: '交通部队'
-    },
-    {
-      text: '森林部队',
-      value: '森林部队'
-    }
-  ]
-];
+const resumeSvc = require('../../../utils/services.js');
+const validator = require('../../../utils/validators.js');
 Page({
 
   /**
@@ -160,15 +8,12 @@ Page({
    */
   data: {
     // formData start
-    registerType: undefined,
-    name: '',
-    sex: '',
-    mobile: '',
-    services: [],
+    // formData end
+    validators: {},
     options: {
       registerType: [
-        { name: '部队退伍兵', value: '1', checked: false },
-        { name: '体育特长人才', value: '0', checked: false }
+        { name: '部队退伍兵', id: 1, checked: false },
+        { name: '体育特长人才', id: 0, checked: false }
       ],
       sex: [
         { id: 0, name: '女' },
@@ -240,114 +85,86 @@ Page({
       ],
       serverCity: [
         {
-          id: '北京',
+          id: 0,
           name: '北京'
         },
         {
-          id: '上海',
+          id: 1,
           name: '上海'
         },
         {
-          id: '广州',
+          id: 2,
           name: '广州'
         },
         {
-          id: '深圳',
+          id: 3,
           name: '深圳'
         },
         {
-          id: '杭州',
+          id: 4,
           name: '杭州'
         }
       ],
       movementType: [
         {
-          id: '武术',
+          id: 0,
           name: '武术'
         },
         {
-          id: '健身',
+          id: 1,
           name: '健身'
         },
         {
-          id: '运动康复',
+          id: 2,
           name: '运动康复'
         },
         {
-          id: '其他',
+          id: 3,
           name: '其他'
         }
       ],
-      armyType: [
+      drivingLicence: [
         {
-          text: '陆军',
-          value: '0'
+          id: 0,
+          name: '无'
         },
         {
-          text: '海军',
-          value: '1'
+          id: 1,
+          name: 'A1'
         },
         {
-          text: '空军',
-          value: '2'
+          id: 2,
+          name: 'A2'
         },
         {
-          text: '火箭军',
-          value: '3'
+          id: 3,
+          name: 'A3'
         },
         {
-          text: '战略支援部队',
-          value: '4'
+          id: 4,
+          name: 'B1'
         },
         {
-          text: '武装警察',
-          value: '5'
+          id: 5,
+          name: 'B2'
+        },
+        {
+          id: 6,
+          name: 'C1'
+        },
+        {
+          id: 7,
+          name: 'C2'
         }
       ],
-      services: [
+      infections: [
         {
-          text: '步兵',
-          value: '步兵'
+          id: 0,
+          name: '身体健康,无传染性、精神性或其它器质性疾病'
         },
         {
-          text: '侦察兵',
-          value: '侦察兵'
-        },
-        {
-          text: '装甲兵',
-          value: '装甲兵'
-        },
-        {
-          text: '炮兵',
-          value: '炮兵'
-        },
-        {
-          text: '防空兵',
-          value: '防空兵'
-        },
-        {
-          text: '陆军航空兵',
-          value: '陆军航空兵'
-        },
-        {
-          text: '工程兵',
-          value: '工程兵'
-        },
-        {
-          text: '通信兵',
-          value: '通信兵'
-        },
-        {
-          text: '防化兵',
-          value: '防化兵'
-        },
-        {
-          text: '电子对抗兵',
-          value: '电子对抗兵'
-        },
-        {
-          text: '特种兵',
-          value: '特种兵'
+          id: 1,
+          name: '有传染性、精神性或其它器质性疾病'
         }
       ]
     }
@@ -357,7 +174,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
 
   /**
@@ -408,6 +224,27 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  formChange: function (e) {
+    console.log(e);
+  },
+
+  inputChange: function (e) {
+    const validators = this.data.validators;
+    const control = e.currentTarget.dataset;
+    control.value = e.detail.value;
+    validators[control.name] = validator.validate(control);
+    this.setData({
+      validators: validators
+    });
+    console.log(this.data.validators);
+  },
+
+  textareaChange: function (e) {
+    this.setData({
+      cursor: e.detail.cursor
+    });
+  },
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e);
     this.setData({
@@ -426,24 +263,20 @@ Page({
     */
   },
   bindPickerChange: function (e) {
-    console.log(e);
-    const target = e.currentTarget.id;
+    const target = e.currentTarget;
     const data = {};
-    data[target] = e.detail.value;
-    this.setData(data);
-    console.log(this.data);
-  },
 
-  bindServicesPickerChange: function (e) {
-    console.log(e);
-    const target = e.currentTarget.id;
-    const data = {};
-    data[target] = e.detail.value;
-    this.setData({ options: { services } });
-    console.log(this.data);
+    if (target.dataset.mode === 'selector') {
+      data[target.id] = this.data.options[target.id][parseInt(e.detail.value)];
+    } else {
+      data[target.id] = e.detail.value;
+    }
+    this.setData(data);
   },
 
   formSubmit: function (e) {
-    console.log(e);
+    console.log(e.detail.value);
+    console.log(validator.validates(e));
+    // resumeSvc.resume(e.detail.value);
   }
 })

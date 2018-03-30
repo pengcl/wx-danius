@@ -3,6 +3,29 @@
 
 /**app.wxss**/
 
-page,.container {
+page, .container {
   min-height: 100%;
+}
+
+.page__hd {
+  padding: 40px;
+}
+
+.page__title {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.page__desc {
+  margin-top: 5px;
+  color: #888;
+  text-align: left;
+  font-size: 14px;
+}
+
+.page__ft {
+  padding-top: 40px;
+  padding-bottom: 10px;
+  text-align: center;
 }

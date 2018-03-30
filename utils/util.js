@@ -15,5 +15,16 @@ const formatNumber = n => {
 }
 
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  formDataToUrl: (body) => {
+    let str = '';
+    for (const keyName in body) {
+      if (!str) {
+        str = '?' + keyName + '=' + (body[keyName] === undefined ? '' : encodeURI(encodeURI(body[keyName])));
+      } else {
+        str = str + '&' + keyName + '=' + (body[keyName] === undefined ? '' : encodeURI(encodeURI(body[keyName])));
+      }
+    }
+    return str;
+  }
 }
